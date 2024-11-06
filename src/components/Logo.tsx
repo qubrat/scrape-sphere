@@ -3,7 +3,7 @@ import { OrbitIcon } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
-const bgGradient = 'bg-gradient-to-r from-emerald-500 to-emerald-600';
+const bgGradient = 'bg-gradient-to-r from-primary to-emerald-600';
 
 type LogoProps = {
 	fontSize?: 'text-2xl';
@@ -24,4 +24,4 @@ const Logo = ({ fontSize, iconSize }: LogoProps) => {
 	);
 };
 
-export default Logo;
+export { Logo };

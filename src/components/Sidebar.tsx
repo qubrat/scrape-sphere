@@ -1,10 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { CoinsIcon, HomeIcon, ShieldCheckIcon, WorkflowIcon } from 'lucide-react';
-import Logo from './Logo';
-import { buttonVariants } from './ui/button';
+import { CoinsIcon, HomeIcon, MenuIcon, ShieldCheckIcon, WorkflowIcon } from 'lucide-react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Logo } from '@/components/Logo';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 type Route = {
 	href: string;
@@ -35,12 +38,14 @@ const routes: Route[] = [
 	}
 ];
 
-const SidebarItems = () => {
+type SidebarItemsProps = {
+	mobile?: boolean;
+	setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const SidebarItems = ({ mobile, setOpen = () => {} }: SidebarItemsProps) => {
 	const pathname = usePathname();
 	const activeRoute = routes.find((route) => route.href.length > 0 && pathname.includes(route.href)) || routes[0];
-
-	console.log(activeRoute);
-
 	return routes.map((route: Route) => (
 		<Link
 			key={route.href}
@@ -48,6 +53,7 @@ const SidebarItems = () => {
 			className={buttonVariants({
 				variant: activeRoute.href === route.href ? 'sidebarActiveItem' : 'sidebarItem'
 			})}
+			onClick={() => mobile && setOpen((prev) => !prev)}
 		>
 			<route.icon size={20} />
 			{route.label}
@@ -69,4 +75,30 @@ const DesktopSidebar = () => {
 	);
 };
 
-export { DesktopSidebar };
+const MobileSidebar = () => {
+	const [isOpen, setOpen] = useState(false);
+	return (
+		<div className="block border-separate bg-background md:hidden">
+			<nav className="container flex items-center justify-between px-8">
+				<Sheet open={isOpen} onOpenChange={setOpen}>
+					<SheetTrigger asChild>
+						<Button variant={'ghost'} size={'icon'}>
+							<MenuIcon />
+						</Button>
+					</SheetTrigger>
+					<SheetContent className="w-80 sm:w-[540px] space-y-4" side={'left'}>
+						<VisuallyHidden>
+							<SheetTitle>Menu</SheetTitle>
+						</VisuallyHidden>
+						<Logo />
+						<div className="flex flex-col gap-1">
+							<SidebarItems mobile setOpen={setOpen} />
+						</div>
+					</SheetContent>
+				</Sheet>
+			</nav>
+		</div>
+	);
+};
+
+export { DesktopSidebar, MobileSidebar };
