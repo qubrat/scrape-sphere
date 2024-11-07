@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { CoinsIcon, HomeIcon, MenuIcon, ShieldCheckIcon, WorkflowIcon } from 'lucide-react';
+import { CoinsIcon, HomeIcon, MenuIcon, ShieldCheckIcon, WalletIcon, WorkflowIcon } from 'lucide-react';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -34,7 +34,7 @@ const routes: Route[] = [
 	{
 		href: 'billing',
 		label: 'Billing',
-		icon: CoinsIcon
+		icon: WalletIcon
 	}
 ];
 
