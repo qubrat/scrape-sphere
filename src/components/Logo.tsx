@@ -6,11 +6,11 @@ import React from 'react';
 const bgGradient = 'bg-gradient-to-r from-primary to-emerald-600';
 
 type LogoProps = {
-	fontSize?: 'text-2xl';
-	iconSize?: 20;
+	fontSize?: 'text-xl' | 'text-2xl';
+	iconSize?: number;
 };
 
-const Logo = ({ fontSize, iconSize }: LogoProps) => {
+const Logo = ({ fontSize = 'text-2xl', iconSize = 20 }: LogoProps) => {
 	return (
 		<Link href="/" className={cn('text-2xl font-extrabold flex items-center gap-2', fontSize)}>
 			<div className={`rounded-xl ${bgGradient} p-2`}>
