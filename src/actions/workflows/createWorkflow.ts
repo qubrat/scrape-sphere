@@ -4,7 +4,7 @@ import prisma from '@/lib/prisma';
 import { createWorkflowSchema, type CreateWorkflowSchemaType } from '@/schema/workflow';
 import { WorkflowStatus } from '@/types/workflow';
 import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 export async function createWorkflow(form: CreateWorkflowSchemaType) {
 	const { success, data } = createWorkflowSchema.safeParse(form);
@@ -31,6 +31,7 @@ export async function createWorkflow(form: CreateWorkflowSchemaType) {
 	if (!result) {
 		throw new Error('Failed to create workflow');
 	}
+	revalidatePath('/workflows');
 
-	redirect(`/workflow/editor/${result.id}`);
+	return { success: true, workflowId: result.id };
 }
