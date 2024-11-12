@@ -17,14 +17,16 @@ function NodeHeader({ taskType }: NodeHeaderProps) {
 			<task.icon size={16} />
 			<div className="flex items-center justify-between w-full">
 				<p className="text-xs font-bold uppercase text-muted-foreground">{task.label}</p>
-				<div className="flex gap-1 items-center">{task.isEntryPoint && <Badge>Entry point</Badge>}</div>
-				<Badge className="gap-2 flex items-center text-xs">
-					<CoinsIcon size={16} />
-					TODO
-				</Badge>
-				<Button variant={'ghost'} size={'icon'} className="drag-handle cursor-grab">
-					<GripVerticalIcon size={20} />
-				</Button>
+				<div className="flex gap-1 items-center">
+					<div className="flex gap-1 items-center">{task.isEntryPoint && <Badge>Entry point</Badge>}</div>
+					<Badge className="gap-2 flex items-center text-xs">
+						<CoinsIcon size={16} />
+						TODO
+					</Badge>
+					<Button variant={'ghost'} size={'icon'} className="drag-handle cursor-grab">
+						<GripVerticalIcon size={20} />
+					</Button>
+				</div>
 			</div>
 		</div>
 	);
