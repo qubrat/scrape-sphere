@@ -1,7 +1,7 @@
 'use client';
 import { Workflow } from '@prisma/client';
-import { Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState } from '@xyflow/react';
-import React from 'react';
+import { Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState, useReactFlow } from '@xyflow/react';
+import React, { useEffect } from 'react';
 import { Task } from '@/types/task';
 
 import '@xyflow/react/dist/style.css';
@@ -20,8 +20,18 @@ type FlowEditorProps = {
 };
 
 function FlowEditor({ workflow }: FlowEditorProps) {
-	const [nodes, setNodes, onNodesChange] = useNodesState([createFlowNode(Task.LAUNCH_BROWSER)]);
+	const [nodes, setNodes, onNodesChange] = useNodesState([]);
 	const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+
+	useEffect(() => {
+		try {
+			const flow = JSON.parse(workflow.definition);
+			if (!flow) return;
+
+			setNodes(flow.nodes || []);
+			setEdges(flow.edges || []);
+		} catch (error) {}
+	}, [workflow.definition, setNodes, setEdges]);
 
 	return (
 		<main className="h-full w-full">

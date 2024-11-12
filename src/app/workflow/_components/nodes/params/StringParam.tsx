@@ -5,7 +5,7 @@ import { StringParamProps } from '@/types/appNode';
 import React, { useId, useState } from 'react';
 
 function StringParam({ param, value, updateNodeParamValue }: StringParamProps) {
-	const [internalValue, setInternalValue] = useState(value);
+	const [internalValue, setInternalValue] = useState(value || '');
 	const id = useId();
 
 	return (
