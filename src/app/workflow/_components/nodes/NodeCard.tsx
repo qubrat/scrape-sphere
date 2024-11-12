@@ -28,7 +28,7 @@ function NodeCard({ children, nodeId, isSelected }: NodeCardProps) {
 	return (
 		<div
 			onDoubleClick={handleDoubleClick}
-			className={cn('rounded-md cursor-pointer bg-background border-2 w-[420px] text-xs gap1 flex flex-col', isSelected && 'border-primary')}
+			className={cn('rounded-md cursor-pointer bg-background border-2 w-[420px] text-xs gap-2 flex flex-col', isSelected && 'border-primary')}
 		>
 			{children}
 		</div>

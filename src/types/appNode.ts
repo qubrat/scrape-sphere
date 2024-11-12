@@ -11,10 +11,16 @@ interface AppNode extends Node {
 	data: AppNodeData;
 }
 
-type StringParamProps = {
+type ParamProps = {
 	param: TaskParamSchema;
 	value: string;
 	updateNodeParamValue: (newValue: string) => void;
 };
 
-export type { AppNodeData, AppNode, StringParamProps };
+type BrowserInstanceParamProps = {
+	param: TaskParamSchema;
+	value: any;
+	updateNodeParamValue: any;
+};
+
+export type { AppNodeData, AppNode, ParamProps };

@@ -1,10 +1,10 @@
 'use client';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { StringParamProps } from '@/types/appNode';
+import { ParamProps } from '@/types/appNode';
 import React, { useId, useState } from 'react';
 
-function StringParam({ param, value, updateNodeParamValue }: StringParamProps) {
+function StringParam({ param, value, updateNodeParamValue }: ParamProps) {
 	const [internalValue, setInternalValue] = useState(value || '');
 	const id = useId();
 
