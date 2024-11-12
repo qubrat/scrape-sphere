@@ -1,14 +1,13 @@
 export const Task = {
-	LAUNCH_BROWSER: 'LAUNCH_BROWSER'
+	LAUNCH_BROWSER: 'LAUNCH_BROWSER',
+	PAGE_TO_HTML: 'PAGE_TO_HTML'
 } as const;
 
 export type TaskType = keyof typeof Task;
 
 export const TaskParam = {
 	STRING: 'STRING',
-	NUMBER: 'NUMBER',
-	BOOLEAN: 'BOOLEAN',
-	OBJECT: 'OBJECT'
+	BROWSER_INSTANCE: 'BROWSER_INSTANCE'
 } as const;
 
 export type TaskParamType = keyof typeof TaskParam;

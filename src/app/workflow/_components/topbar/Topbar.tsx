@@ -15,7 +15,7 @@ type TopbarProps = {
 function Topbar({ title, subtitle, workflowId }: TopbarProps) {
 	const router = useRouter();
 	return (
-		<header className="flex p-2 border-b justify-between items-center bg-background sticky top-0 z-10">
+		<header className="flex p-2 border-b-2 justify-between items-center bg-background sticky top-0 z-10">
 			<div className="flex gap-1 flex-1">
 				<TooltipWrapper content="Back">
 					<Button variant={'ghost'} size="icon" onClick={() => router.back()}>
