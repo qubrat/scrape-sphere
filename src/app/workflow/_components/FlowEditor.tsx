@@ -12,16 +12,21 @@ import {
 	useNodesState,
 	useReactFlow
 } from '@xyflow/react';
-import React, { use, useCallback, useEffect } from 'react';
-import { Task, TaskType } from '@/types/task';
+import React, { useCallback, useEffect } from 'react';
+import { TaskType } from '@/types/task';
 
 import '@xyflow/react/dist/style.css';
 import { createFlowNode } from '@/lib/workflow/createFlowNode';
 import NodeComponent from '@/app/workflow/_components/nodes/NodeComponent';
 import { AppNode } from '@/types/appNode';
+import DeletableEdge from '@/app/workflow/_components/edges/DeletableEdge';
 
 const nodeTypes = {
 	ScrapeSphereNode: NodeComponent
+};
+
+const edgeTypes = {
+	default: DeletableEdge
 };
 
 const snapGrid: [number, number] = [42, 42];
@@ -77,6 +82,7 @@ function FlowEditor({ workflow }: FlowEditorProps) {
 				edges={edges}
 				onEdgesChange={onEdgesChange}
 				nodeTypes={nodeTypes}
+				edgeTypes={edgeTypes}
 				snapToGrid
 				snapGrid={snapGrid}
 				fitView
