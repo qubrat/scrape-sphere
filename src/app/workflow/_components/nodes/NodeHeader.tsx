@@ -13,7 +13,7 @@ type NodeHeaderProps = {
 function NodeHeader({ taskType }: NodeHeaderProps) {
 	const task = TaskRegistry[taskType];
 	return (
-		<div className="flex items-center gap-2 p-2">
+		<div className="flex items-center gap-2 p-2 drag-handle">
 			<task.icon size={16} />
 			<div className="flex items-center justify-between w-full">
 				<p className="text-xs font-bold uppercase text-muted-foreground">{task.label}</p>
@@ -23,7 +23,7 @@ function NodeHeader({ taskType }: NodeHeaderProps) {
 						<CoinsIcon size={16} />
 						TODO
 					</Badge>
-					<Button variant={'ghost'} size={'icon'} className="drag-handle cursor-grab">
+					<Button variant={'ghost'} size={'icon'} className="cursor-grab">
 						<GripVerticalIcon size={20} />
 					</Button>
 				</div>

@@ -14,6 +14,7 @@ interface AppNode extends Node {
 type ParamProps = {
 	param: TaskParamSchema;
 	value: string;
+	disabled?: boolean;
 	updateNodeParamValue: (newValue: string) => void;
 };
 
