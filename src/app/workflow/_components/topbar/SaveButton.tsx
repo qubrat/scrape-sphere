@@ -1,10 +1,11 @@
 'use client';
 
 import { updateWorkflow } from '@/actions/workflows/updateWorkflow';
+import DisplayIf from '@/components/DisplayIf';
 import { Button } from '@/components/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { useReactFlow } from '@xyflow/react';
-import { CheckIcon } from 'lucide-react';
+import { CheckIcon, LoaderCircleIcon, LoaderIcon } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -33,7 +34,12 @@ function SaveButton({ workflowId }: SaveButtonProps) {
 
 	return (
 		<Button variant={'outline'} className="flex items-center gap-2" onClick={handleSave} disabled={saveMutation.isPending}>
-			<CheckIcon size={16} className="stroke-primary" />
+			<DisplayIf condition={!saveMutation.isPending}>
+				<CheckIcon size={16} className="stroke-primary" />
+			</DisplayIf>
+			<DisplayIf condition={saveMutation.isPending}>
+				<LoaderCircleIcon size={16} className="stroke-primary animate-spin" />
+			</DisplayIf>
 			Save
 		</Button>
 	);

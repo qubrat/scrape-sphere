@@ -4,6 +4,7 @@ import { Handle, Position, useEdges } from '@xyflow/react';
 import React from 'react';
 import NodeParamField from './NodeParamField';
 import { HandleColor } from './common';
+import DisplayIf from '@/components/DisplayIf';
 
 type NodeInputsProps = {
 	children?: React.ReactNode;
@@ -25,7 +26,7 @@ function NodeInput({ input, nodeId }: NodeInputProps) {
 	return (
 		<div className="flex justify-start relative p-3 bg-secondary w-full">
 			<NodeParamField param={input} nodeId={nodeId} disabled={isConnected} />
-			{!input.hideHandle && (
+			<DisplayIf condition={!input.hideHandle}>
 				<Handle
 					id={input.name}
 					isConnectable={!isConnected}
@@ -33,7 +34,7 @@ function NodeInput({ input, nodeId }: NodeInputProps) {
 					position={Position.Left}
 					className={cn('!bg-muted-foreground !border-2 !border-background !-left-2 !w-4 !h-4', HandleColor[input.type])}
 				/>
-			)}
+			</DisplayIf>
 		</div>
 	);
 }
