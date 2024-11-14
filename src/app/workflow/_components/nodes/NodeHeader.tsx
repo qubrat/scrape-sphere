@@ -40,14 +40,14 @@ function NodeHeader({ taskType, nodeId }: NodeHeaderProps) {
 			<div className="flex items-center justify-between w-full">
 				<p className="text-xs font-bold uppercase text-muted-foreground">{task.label}</p>
 				<div className="flex gap-1 items-center">
-					<DisplayIf condition={task.isEntryPoint}>
+					<DisplayIf condition={!!task.isEntryPoint}>
 						<div className="flex gap-1 items-center">
 							<Badge>Entry point</Badge>
 						</div>
 					</DisplayIf>
 					<Badge className="gap-2 flex items-center text-xs">
 						<CoinsIcon size={16} />
-						TODO
+						{task.credits}
 					</Badge>
 					<DisplayIf condition={!task.isEntryPoint}>
 						<Button variant={'ghost'} size={'icon'} className="cursor-pointer hover:text-destructive" onClick={handleDeleteButtonClick}>
