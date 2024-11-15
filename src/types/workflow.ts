@@ -1,5 +1,6 @@
 import { LucideProps } from 'lucide-react';
-import { TaskParamSchema, TaskParamType, TaskType } from './task';
+import { TaskParamSchema, TaskType } from '@/types/task';
+import { AppNode } from './appNode';
 
 export const WorkflowStatus = {
 	DRAFT: 'DRAFT',
@@ -17,3 +18,10 @@ export type WorkflowTaskType = {
 	outputs: TaskParamSchema[];
 	credits: number;
 };
+
+export type WorkflowExecutionPlanPhase = {
+	phase: number;
+	nodes: AppNode[];
+};
+
+export type WorkflowExecutionPlan = WorkflowExecutionPlanPhase[];
