@@ -18,10 +18,9 @@ type ParamProps = {
 	updateNodeParamValue: (newValue: string) => void;
 };
 
-type BrowserInstanceParamProps = {
-	param: TaskParamSchema;
-	value: any;
-	updateNodeParamValue: any;
+type AppNodeMissingInputs = {
+	nodeId: string;
+	inputs: string[];
 };
 
-export type { AppNodeData, AppNode, ParamProps };
+export type { AppNodeData, AppNode, ParamProps, AppNodeMissingInputs };
