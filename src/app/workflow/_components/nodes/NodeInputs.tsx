@@ -5,6 +5,7 @@ import React from 'react';
 import NodeParamField from './NodeParamField';
 import { HandleColor } from './common';
 import DisplayIf from '@/components/DisplayIf';
+import useFlowValidation from '@/components/hooks/useFlowValidation';
 
 type NodeInputsProps = {
 	children?: React.ReactNode;
@@ -22,10 +23,12 @@ type NodeInputProps = {
 function NodeInput({ input, nodeId }: NodeInputProps) {
 	const edges = useEdges();
 	const isConnected = edges.some((edge) => edge.target === nodeId && edge.targetHandle === input.name);
+	const { invalidInputs } = useFlowValidation();
+	const hasErrors = !!invalidInputs.find((node) => node.nodeId === nodeId)?.inputs?.find((invalidInput) => invalidInput === input.name);
 
 	return (
-		<div className="flex justify-start relative p-3 bg-secondary w-full">
-			<NodeParamField param={input} nodeId={nodeId} disabled={isConnected} />
+		<div className={cn('flex justify-start relative p-3 bg-secondary w-full', hasErrors && 'bg-destructive/10')}>
+			<NodeParamField param={input} nodeId={nodeId} disabled={isConnected} hasError={hasErrors} />
 			<DisplayIf condition={!input.hideHandle}>
 				<Handle
 					id={input.name}

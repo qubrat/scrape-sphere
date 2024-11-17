@@ -15,6 +15,7 @@ type ParamProps = {
 	param: TaskParamSchema;
 	value: string;
 	disabled?: boolean;
+	hasError?: boolean;
 	updateNodeParamValue: (newValue: string) => void;
 };
 

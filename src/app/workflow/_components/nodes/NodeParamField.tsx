@@ -10,9 +10,10 @@ type NodeParamFieldProps = {
 	param: TaskParamSchema;
 	nodeId: string;
 	disabled?: boolean;
+	hasError?: boolean;
 };
 
-function NodeParamField({ param, nodeId, disabled = false }: NodeParamFieldProps) {
+function NodeParamField({ param, nodeId, disabled = false, hasError = false }: NodeParamFieldProps) {
 	const { updateNodeData, getNode } = useReactFlow();
 	const node = getNode(nodeId) as AppNode;
 	const value = node?.data.inputs?.[param.name];
@@ -32,9 +33,9 @@ function NodeParamField({ param, nodeId, disabled = false }: NodeParamFieldProps
 
 	switch (param.type) {
 		case TaskParam.STRING:
-			return <StringParam param={param} value={value} updateNodeParamValue={updateNodeParamValue} disabled={disabled} />;
+			return <StringParam param={param} value={value} updateNodeParamValue={updateNodeParamValue} disabled={disabled} hasError={hasError} />;
 		case TaskParam.BROWSER_INSTANCE:
-			return <BrowserInstanceParam param={param} value={''} updateNodeParamValue={updateNodeParamValue} />;
+			return <BrowserInstanceParam param={param} value={''} updateNodeParamValue={updateNodeParamValue} hasError={hasError} />;
 		default:
 			return (
 				<div className="w-full">
