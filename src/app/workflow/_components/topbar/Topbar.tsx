@@ -6,14 +6,16 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import SaveButton from '@/app/workflow/_components/topbar/SaveButton';
 import ExecuteButton from '@/app/workflow/_components/topbar/ExecuteButton';
+import DisplayIf from '@/components/DisplayIf';
 
 type TopbarProps = {
 	title: string;
 	workflowId: string;
 	subtitle?: string;
+	hideButtons?: boolean;
 };
 
-function Topbar({ title, subtitle, workflowId }: TopbarProps) {
+function Topbar({ title, subtitle, workflowId, hideButtons = false }: TopbarProps) {
 	const router = useRouter();
 	return (
 		<header className="flex p-2 border-b-2 justify-between items-center bg-background sticky top-0 z-10">
@@ -29,8 +31,10 @@ function Topbar({ title, subtitle, workflowId }: TopbarProps) {
 				</div>
 			</div>
 			<div className="flex gap-1 flex-1 justify-end">
-				<ExecuteButton workflowId={workflowId} />
-				<SaveButton workflowId={workflowId} />
+				<DisplayIf condition={!hideButtons}>
+					<ExecuteButton workflowId={workflowId} />
+					<SaveButton workflowId={workflowId} />
+				</DisplayIf>
 			</div>
 		</header>
 	);
