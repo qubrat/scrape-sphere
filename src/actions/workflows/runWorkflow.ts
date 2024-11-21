@@ -1,11 +1,11 @@
 'use server';
 
 import prisma from '@/lib/prisma';
+import { executeWorkflow } from '@/lib/workflow/executeWorkflow';
 import { flowToExecutionPlan } from '@/lib/workflow/executionPlan';
 import { TaskRegistry } from '@/lib/workflow/task/Registry';
 import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger } from '@/types/workflow';
 import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/dist/server/api-utils';
 
 export async function runWorkflow(form: { workflowId: string; flowDefinition?: string }) {
 	const { userId } = await auth();
@@ -77,6 +77,7 @@ export async function runWorkflow(form: { workflowId: string; flowDefinition?: s
 		throw new Error('Failed to create workflow execution');
 	}
 
-	// redirect(`/workflows/runs/${workflowId}/${execution.id}`);
+	executeWorkflow(execution.id); // Run the workflow in the background
+
 	return { success: true, executionId: execution.id };
 }

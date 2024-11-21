@@ -45,3 +45,48 @@ export const ExecutionPhaseStatus = {
 	FAILED: 'FAILED'
 } as const;
 export type ExecutionPhaseStatusType = keyof typeof ExecutionPhaseStatus;
+
+export type WorkflowExecution = {
+	id: string;
+	workflowId: string;
+	userId: string;
+	trigger: WorkflowExecutionTriggerType;
+	status: WorkflowExecutionStatusType;
+	createdAt: Date;
+	startedAt?: Date | null;
+	completedAt?: Date | null;
+	phases: ExecutionPhase[];
+	creditsConsumed?: number | null;
+	workflow: Workflow;
+};
+
+export type ExecutionPhase = {
+	id: string;
+	userId: string;
+	status: ExecutionPhaseStatusType;
+	number: number;
+	node: string;
+	name: string;
+	startedAt?: Date | null;
+	completedAt?: Date | null;
+	inputs?: string | null;
+	outputs?: string | null;
+	creditsConsumed?: number | null;
+	workflowExecutionId: string;
+	execution: WorkflowExecution;
+};
+
+export type Workflow = {
+	id: string;
+	userId: string;
+	name: string;
+	description?: string | null;
+	definition: string;
+	status: WorkflowStatusType;
+	lastRunAt?: Date | null;
+	lastRunId?: string | null;
+	lastRunStatus?: string | null;
+	createdAt: Date;
+	updatedAt: Date;
+	executions: WorkflowExecution[];
+};
