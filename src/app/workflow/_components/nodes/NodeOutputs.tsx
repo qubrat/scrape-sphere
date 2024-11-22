@@ -19,7 +19,7 @@ type NodeOutputProps = {
 
 function NodeOutput({ output, nodeId }: NodeOutputProps) {
 	return (
-		<div className="flex justify-end relative p-3 bg-secondary w-full">
+		<div className="flex justify-end relative p-3 bg-secondary/50 w-full last:rounded-b-md">
 			<p className="text-xs text-muted-foreground">{output.name}</p>
 			<Handle
 				id={output.name}

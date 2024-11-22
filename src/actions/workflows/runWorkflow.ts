@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { executeWorkflow } from '@/lib/workflow/executeWorkflow';
-import { flowToExecutionPlan } from '@/lib/workflow/executionPlan';
+import { flowToExecutionPlan } from '@/lib/workflow/executionPlan/flowToExecutionPlan';
 import { TaskRegistry } from '@/lib/workflow/task/Registry';
 import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger } from '@/types/workflow';
 import { auth } from '@clerk/nextjs/server';

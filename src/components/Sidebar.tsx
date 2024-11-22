@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { CoinsIcon, HomeIcon, MenuIcon, ShieldCheckIcon, WalletIcon, WorkflowIcon } from 'lucide-react';
+import { HomeIcon, MenuIcon, ShieldCheckIcon, WalletIcon, WorkflowIcon } from 'lucide-react';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/s
 import { Logo } from '@/components/Logo';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
-type Route = {
+export type Route = {
 	href: string;
 	label: string;
 	icon: React.ElementType;
@@ -101,4 +101,4 @@ const MobileSidebar = () => {
 	);
 };
 
-export { DesktopSidebar, MobileSidebar };
+export { DesktopSidebar, MobileSidebar, SidebarItems };

@@ -1,4 +1,4 @@
-import { flowToExecutionPlan, FlowToExecutionPlanValidationError } from '@/lib/workflow/executionPlan';
+import { flowToExecutionPlan, FlowToExecutionPlanValidationError } from '@/lib/workflow/executionPlan/flowToExecutionPlan';
 import { AppNode } from '@/types/appNode';
 import { useReactFlow } from '@xyflow/react';
 import { useCallback } from 'react';
