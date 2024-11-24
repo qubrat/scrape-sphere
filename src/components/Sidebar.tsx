@@ -1,69 +1,18 @@
 'use client';
-
-import Link from 'next/link';
-import { HomeIcon, MenuIcon, ShieldCheckIcon, WalletIcon, WorkflowIcon } from 'lucide-react';
+import { MenuIcon } from 'lucide-react';
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/Logo';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-
-export type Route = {
-	href: string;
-	label: string;
-	icon: React.ElementType;
-};
-
-const routes: Route[] = [
-	{
-		href: '',
-		label: 'Home',
-		icon: HomeIcon
-	},
-	{
-		href: 'workflows',
-		label: 'Workflows',
-		icon: WorkflowIcon
-	},
-	{
-		href: 'credentials',
-		label: 'Credentials',
-		icon: ShieldCheckIcon
-	},
-	{
-		href: 'billing',
-		label: 'Billing',
-		icon: WalletIcon
-	}
-];
-
-type SidebarItemsProps = {
-	mobile?: boolean;
-	setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const SidebarItems = ({ mobile, setOpen = () => {} }: SidebarItemsProps) => {
-	const pathname = usePathname();
-	const activeRoute = routes.find((route) => route.href.length > 0 && pathname.includes(route.href)) || routes[0];
-	return routes.map((route: Route) => (
-		<Link
-			key={route.href}
-			href={`/${route.href}`}
-			className={buttonVariants({
-				variant: activeRoute.href === route.href ? 'sidebarActiveItem' : 'sidebarItem'
-			})}
-			onClick={() => mobile && setOpen((prev) => !prev)}
-		>
-			<route.icon size={20} />
-			{route.label}
-		</Link>
-	));
-};
+import SidebarItems from '@/components/SidebarItems';
 
 const DesktopSidebar = () => {
 	return (
-		<div className="hidden relative md:block min-w-[280px] max-w-[280px] h-screen overflow-hidden w-full bg-primary/5 dark:bg-secondary/30 dark:text-foreground text-muted-foreground border-r-2 border-separate">
+		<div
+			data-testid="desktop-sidebar"
+			className="hidden relative md:block min-w-[280px] max-w-[280px] h-screen overflow-hidden w-full bg-primary/5 dark:bg-secondary/30 dark:text-foreground text-muted-foreground border-r-2 border-separate"
+		>
 			<div className="flex items-center justify-center gap-2 border-b-[1px] border-separate p-4">
 				<Logo />
 			</div>
@@ -101,4 +50,4 @@ const MobileSidebar = () => {
 	);
 };
 
-export { DesktopSidebar, MobileSidebar, SidebarItems };
+export { DesktopSidebar, MobileSidebar };
