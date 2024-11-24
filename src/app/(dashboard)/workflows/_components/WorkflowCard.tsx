@@ -32,7 +32,7 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
 	const isDraft = workflow.status === WorkflowStatus.DRAFT;
 
 	return (
-		<Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30">
+		<Card className="border border-separate shadow-sm rounded-lg overflow-hidden transition-shadow  hover:shadow-md dark:shadow-primary/30">
 			<CardContent className="p-4 flex items-center justify-between h-[100px]">
 				<div className="flex items-center justify-end space-x-3">
 					<div className={cn('w-10 h-10 rounded-full flex items-center justify-center text-white', statusColors[workflow.status])}>

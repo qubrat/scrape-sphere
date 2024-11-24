@@ -3,7 +3,7 @@ import { OrbitIcon } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
-const bgGradient = 'bg-gradient-to-r from-primary to-emerald-600';
+const bgGradient = 'bg-gradient-to-r from-green-500 to-primary';
 
 type LogoProps = {
 	fontSize?: 'text-xl' | 'text-2xl';
@@ -12,7 +12,7 @@ type LogoProps = {
 
 const Logo = ({ fontSize = 'text-2xl', iconSize = 20 }: LogoProps) => {
 	return (
-		<Link href="/" className={cn('text-2xl font-extrabold flex items-center gap-2', fontSize)}>
+		<Link href="/" className={cn('text-2xl font-extrabold flex items-center gap-2 hover:opacity-90 transition-opacity', fontSize)}>
 			<div className={`rounded-xl ${bgGradient} p-2`}>
 				<OrbitIcon size={iconSize} className="stroke-white" />
 			</div>
