@@ -6,9 +6,13 @@ export async function LaunchBrowserExecutor(environment: ExecutionEnvironment<ty
 	try {
 		const websiteUrl = environment.getInput('Website URL');
 
-		const browser = await puppeteer.launch({ headless: false }); // false for testing
+		const browser = await puppeteer.launch({ headless: true }); // false for testing
+		environment.setBrowser(browser);
 
-		await browser.close();
+		const page = await browser.newPage();
+		await page.goto(websiteUrl);
+		environment.setPage(page);
+
 		return true;
 	} catch (error) {
 		console.error(error);
