@@ -5,6 +5,7 @@ export async function PageToHtmlExecutor(environment: ExecutionEnvironment<typeo
 	try {
 		const html = await environment.getPage()?.content();
 		environment.setOutput('HTML', html || '');
+		environment.log.info('Successfully converted page to HTML');
 		return true;
 	} catch (error: any) {
 		environment.log.error(error.message);

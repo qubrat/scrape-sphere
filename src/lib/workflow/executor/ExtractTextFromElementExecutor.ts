@@ -31,6 +31,7 @@ export async function ExtractTextFromHtmlExecutor(environment: ExecutionEnvironm
 		}
 
 		environment.setOutput('Extracted text', extractedText);
+		environment.log.info('Successfully extracted text from element');
 
 		return true;
 	} catch (error: any) {
