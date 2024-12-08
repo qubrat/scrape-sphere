@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/s
 import { Logo } from '@/components/Logo';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import SidebarItems from '@/components/SidebarItems';
+import UserAvailableCreditsBadge from '@/components/UserAvailableCreditsBadge';
 
 const DesktopSidebar = () => {
 	return (
@@ -16,7 +17,9 @@ const DesktopSidebar = () => {
 			<div className="flex items-center justify-center gap-2 border-b-[1px] border-separate p-4">
 				<Logo />
 			</div>
-			<div className="p-2">TODO CREDITS</div>
+			<div className="p-2">
+				<UserAvailableCreditsBadge />
+			</div>
 			<div className="flex flex-col p-2">
 				<SidebarItems />
 			</div>
@@ -40,6 +43,7 @@ const MobileSidebar = () => {
 							<SheetTitle>Menu</SheetTitle>
 						</VisuallyHidden>
 						<Logo />
+						<UserAvailableCreditsBadge />
 						<div className="flex flex-col gap-1">
 							<SidebarItems mobile setOpen={setOpen} />
 						</div>

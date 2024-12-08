@@ -40,7 +40,7 @@ function LogViewer({ logs }: LogViewerProps) {
 											className={cn(
 												'uppercase text-xs font-bold p-1 pl-4',
 												(log.logLevel as LogLevel) === 'error' && 'text-destructive',
-												(log.logLevel as LogLevel) === 'info' && 'text-primary'
+												(log.logLevel as LogLevel) === 'info' && 'text-green-500'
 											)}
 										>
 											{log.logLevel}

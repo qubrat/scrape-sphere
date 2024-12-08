@@ -15,6 +15,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import ParameterViewer from './ParameterViewer';
 import LogViewer from './LogViewer';
 import PhaseStatusBadge from './PhaseStatusBadge';
+import ReactCountUpWrapper from '@/components/ReactCountUpWrapper';
 
 type ExecutionData = Awaited<ReturnType<typeof getWorkflowExecutionWithPhases>>;
 
@@ -74,7 +75,7 @@ function ExecutionViewer({ initialData }: ExecutionViewerProps) {
 						label="Duration"
 						value={duration ? duration : <Loader2Icon className="animate-spin" size={20} />}
 					/>
-					<ExecutionLabel icon={CoinsIcon} label="Credits consumed" value={creditsConsumed} />
+					<ExecutionLabel icon={CoinsIcon} label="Credits consumed" value={<ReactCountUpWrapper value={creditsConsumed} />} />
 				</div>
 				<Separator />
 				<div className="flex justify-center items-start py-2 px-4">
@@ -126,7 +127,7 @@ function ExecutionViewer({ initialData }: ExecutionViewerProps) {
 									<CoinsIcon size={18} className="stroke-muted-foreground" />
 									<span>Credits</span>
 								</div>
-								<span>TODO</span>
+								<span>{phaseDetails.data?.creditsConsumed}</span>
 							</Badge>
 							<Badge variant={'outline'} className="space-x-4">
 								<div className="flex gap-1 items-center">
