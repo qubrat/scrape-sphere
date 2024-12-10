@@ -35,10 +35,10 @@ function SaveButton({ workflowId }: SaveButtonProps) {
 	return (
 		<Button variant={'outline'} className="flex items-center gap-2" onClick={handleSave} disabled={saveMutation.isPending}>
 			<DisplayIf condition={!saveMutation.isPending}>
-				<CheckIcon size={16} className="stroke-primary" />
+				<CheckIcon size={16} className="stroke-green-500" />
 			</DisplayIf>
 			<DisplayIf condition={saveMutation.isPending}>
-				<LoaderCircleIcon size={16} className="stroke-primary animate-spin" />
+				<LoaderCircleIcon size={16} className="stroke-green-600 animate-spin" />
 			</DisplayIf>
 			Save
 		</Button>

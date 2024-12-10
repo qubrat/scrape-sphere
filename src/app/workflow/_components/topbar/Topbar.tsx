@@ -8,6 +8,7 @@ import SaveButton from '@/app/workflow/_components/topbar/SaveButton';
 import ExecuteButton from '@/app/workflow/_components/topbar/ExecuteButton';
 import NavigationTabs from '@/app/workflow/_components/topbar/NavigationTabs';
 import DisplayIf from '@/components/DisplayIf';
+import PublishButton from './PublishButton';
 
 type TopbarProps = {
 	title: string;
@@ -36,6 +37,7 @@ function Topbar({ title, subtitle, workflowId, hideButtons = false }: TopbarProp
 				<DisplayIf condition={!hideButtons}>
 					<ExecuteButton workflowId={workflowId} />
 					<SaveButton workflowId={workflowId} />
+					<PublishButton workflowId={workflowId} />
 				</DisplayIf>
 			</div>
 		</header>

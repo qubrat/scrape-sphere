@@ -117,6 +117,7 @@ function ExecutionViewer({ initialData }: ExecutionViewerProps) {
 			<div className="flex w-full h-full">
 				<DisplayIf condition={isRunning}>
 					<div className="flex items-center flex-col gap-2 justify-center h-full w-full">
+						<Loader2Icon size={30} className="stroke-primary animate-spin" />
 						<p className="font-bold">Run is in progress, please wait</p>
 					</div>
 				</DisplayIf>
