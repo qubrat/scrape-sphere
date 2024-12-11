@@ -9,7 +9,7 @@ export async function unpublishWorkflow(id: string) {
 	const { userId } = await auth();
 
 	if (!userId) {
-		throw new Error('Unauthenticated');
+		throw new Error('User not authenticated');
 	}
 
 	const workflow = await prisma.workflow.findUnique({

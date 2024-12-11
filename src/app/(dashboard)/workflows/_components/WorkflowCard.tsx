@@ -5,9 +5,10 @@ import { WorkflowStatus, WorkflowStatusType } from '@/types/workflow';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { FileTextIcon, PlayIcon, ReplaceIcon } from 'lucide-react';
-import WorkflowActionsButton from './WorkflowActionsButton';
+import WorkflowActionsButton from '@/app/(dashboard)/workflows/_components/WorkflowActionsButton';
 import DisplayIf from '@/components/DisplayIf';
 import RunButton from '@/app/(dashboard)/workflows/_components/RunButton';
+import ScheduleSection from '@/app/(dashboard)/workflows/_components/ScheduleSection';
 
 const statusColors: Record<WorkflowStatusType, string> = {
 	[WorkflowStatus.DRAFT]: 'bg-amber-400 ',
@@ -47,6 +48,7 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
 							</Link>
 							<DraftBadge isDraft={isDraft} />
 						</h3>
+						<ScheduleSection isDraft={isDraft} creditsCost={workflow.creditsCost} workflowId={workflow.id} cron={workflow.cron} />
 					</div>
 				</div>
 				<div className="flex items-center space-x-2">

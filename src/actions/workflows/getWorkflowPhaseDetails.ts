@@ -7,7 +7,7 @@ export async function getWorkflowPhaseDetails(phaseId: string) {
 	const { userId } = await auth();
 
 	if (!userId) {
-		throw new Error('Unauthenticated');
+		throw new Error('User not authenticated');
 	}
 
 	return prisma.executionPhase.findUnique({ where: { id: phaseId, execution: { userId } }, include: { logs: { orderBy: { timestamp: 'asc' } } } });

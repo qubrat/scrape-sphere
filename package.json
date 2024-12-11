@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "db:push": "prisma migrate dev"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.2.1",
@@ -49,6 +50,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "cron-parser": "^4.9.0",
+    "cronstrue": "^2.52.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.1",
     "input-otp": "^1.4.1",

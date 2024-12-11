@@ -15,7 +15,7 @@ type PublishWorkflowProps = {
 export async function publishWorkflow({ id, flowDefinition }: PublishWorkflowProps) {
 	const { userId } = await auth();
 	if (!userId) {
-		throw new Error('Unauthorized');
+		throw new Error('User not authenticated');
 	}
 
 	const workflow = await prisma.workflow.findUnique({

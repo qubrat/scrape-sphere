@@ -26,12 +26,16 @@ model Workflow {
 
   definition    String
   executionPlan String?
-  creditsCost   Int            @default(0)
-  status        WorkflowStatus
+  creditsCost   Int     @default(0)
+
+  cron String? // * * * * *
+
+  status WorkflowStatus
 
   lastRunAt     DateTime?
   lastRunId     String?
   lastRunStatus String?
+  nextRunAt     DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
