@@ -15,9 +15,10 @@ type TopbarProps = {
 	workflowId: string;
 	subtitle?: string;
 	hideButtons?: boolean;
+	isPublished?: boolean;
 };
 
-function Topbar({ title, subtitle, workflowId, hideButtons = false }: TopbarProps) {
+function Topbar({ title, subtitle, workflowId, hideButtons = false, isPublished = false }: TopbarProps) {
 	const router = useRouter();
 	return (
 		<header className="flex p-2 border-b-2 justify-between items-center bg-background sticky top-0 z-10">
@@ -36,8 +37,10 @@ function Topbar({ title, subtitle, workflowId, hideButtons = false }: TopbarProp
 			<div className="flex gap-1 flex-1 justify-end">
 				<DisplayIf condition={!hideButtons}>
 					<ExecuteButton workflowId={workflowId} />
-					<SaveButton workflowId={workflowId} />
-					<PublishButton workflowId={workflowId} />
+					<DisplayIf condition={!isPublished}>
+						<SaveButton workflowId={workflowId} />
+						<PublishButton workflowId={workflowId} />
+					</DisplayIf>
 				</DisplayIf>
 			</div>
 		</header>
