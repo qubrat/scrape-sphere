@@ -35,7 +35,7 @@ const RunButton = ({ workflowId }: RunButtonProps) => {
 
 	return (
 		<Button variant="outline" size={'sm'} className="flex items-center gap-2" disabled={mutation.isPending} onClick={handleClick}>
-			{mutation.isPending ? <Loader2Icon size={16} className="stroke-violet-500 animate-spin" /> : <PlayIcon size={16} />}
+			{mutation.isPending ? <Loader2Icon size={16} className="text-primary animate-spin" /> : <PlayIcon size={16} className="text-primary" />}
 			Run
 		</Button>
 	);

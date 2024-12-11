@@ -229,7 +229,6 @@ async function cleanupEnvironment(environment: Environment) {
 }
 
 async function decrementUserBalance(userId: string, amount: number, logCollector: LogCollector) {
-	console.log(`User ${userId} just used ${amount} credits`);
 	try {
 		await prisma.userBalance.update({
 			where: {

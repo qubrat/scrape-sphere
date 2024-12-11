@@ -8,10 +8,12 @@ import CustomDialogHeader from '@/components/CustomDialogHeader';
 import { Input } from '@/components/ui/input';
 import { useMutation } from '@tanstack/react-query';
 import { updateWorkflowCron } from '@/actions/workflows/updateWorkflowCron';
+import { removeWorkflowSchedule } from '@/actions/workflows/removeWorkflowSchedule';
 import { toast } from 'sonner';
 import DisplayIf from '@/components/DisplayIf';
 import cronstrue from 'cronstrue';
 import parser from 'cron-parser';
+import { Separator } from '@/components/ui/separator';
 
 type SchedulerDialogProps = {
 	workflowId: string;
@@ -23,8 +25,18 @@ const SchedulerDialog = ({ workflowId, initialCron }: SchedulerDialogProps) => {
 	const [cronValid, setCronValid] = useState(false);
 	const [readableCron, setReadableCron] = useState('');
 
-	const mutation = useMutation({
+	const updateScheduleMutation = useMutation({
 		mutationFn: updateWorkflowCron,
+		onSuccess: () => {
+			toast.success('Workflow scheduled', { id: 'cron' });
+		},
+		onError: () => {
+			toast.error('Something went wrong', { id: 'cron' });
+		}
+	});
+
+	const removeScheduleMutation = useMutation({
+		mutationFn: removeWorkflowSchedule,
 		onSuccess: () => {
 			toast.success('Workflow scheduled', { id: 'cron' });
 		},
@@ -49,7 +61,12 @@ const SchedulerDialog = ({ workflowId, initialCron }: SchedulerDialogProps) => {
 
 	const handleSave = () => {
 		toast.loading('Saving...', { id: 'cron' });
-		mutation.mutate({ id: workflowId, cron });
+		updateScheduleMutation.mutate({ id: workflowId, cron });
+	};
+
+	const handleRemove = () => {
+		toast.loading('Removing schedule...', { id: 'cron' });
+		removeScheduleMutation.mutate(workflowId);
 	};
 
 	return (
@@ -85,6 +102,26 @@ const SchedulerDialog = ({ workflowId, initialCron }: SchedulerDialogProps) => {
 					>
 						{cronValid ? readableCron : 'Invalid cron expression'}
 					</div>
+					<DisplayIf condition={!!workflowHasValidCron}>
+						<DialogClose asChild>
+							<div className="">
+								<Button
+									variant={'outline'}
+									className="w-full text-destructive border-destructive hover:text-destructive"
+									disabled={removeScheduleMutation.isPending || updateScheduleMutation.isPending}
+									onClick={handleRemove}
+								>
+									<DisplayIf condition={!removeScheduleMutation.isPending}>
+										<span>Remove current schedule</span>
+									</DisplayIf>
+									<DisplayIf condition={removeScheduleMutation.isPending}>
+										<Loader2Icon size={16} className="stroke-destructive animate-spin" />
+									</DisplayIf>
+								</Button>
+								<Separator className="my-4" />
+							</div>
+						</DialogClose>
+					</DisplayIf>
 				</div>
 				<DialogFooter className="px-6 gap-2">
 					<DialogClose asChild>
@@ -93,11 +130,11 @@ const SchedulerDialog = ({ workflowId, initialCron }: SchedulerDialogProps) => {
 						</Button>
 					</DialogClose>
 					<DialogClose asChild>
-						<Button className="w-full" onClick={handleSave} disabled={mutation.isPending || !cronValid}>
-							<DisplayIf condition={!mutation.isPending}>
+						<Button className="w-full" onClick={handleSave} disabled={updateScheduleMutation.isPending || !cronValid}>
+							<DisplayIf condition={!updateScheduleMutation.isPending}>
 								<span>Save</span>
 							</DisplayIf>
-							<DisplayIf condition={mutation.isPending}>
+							<DisplayIf condition={updateScheduleMutation.isPending}>
 								<Loader2Icon size={16} className="stroke-primary animate-spin" />
 							</DisplayIf>
 						</Button>

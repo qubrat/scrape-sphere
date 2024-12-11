@@ -16,7 +16,7 @@ const ScheduleSection = ({ isDraft, creditsCost, workflowId, cron }: ScheduleSec
 	return (
 		<div className="flex items-center gap-2">
 			<CornerDownRightIcon className="h-4 w-4 text-muted-foreground" />
-			<SchedulerDialog workflowId={workflowId} initialCron={cron} />
+			<SchedulerDialog workflowId={workflowId} initialCron={cron} key={`${workflowId}-${cron}`} />
 			<MoveRightIcon className="h-4 w-4 text-muted-foreground" />
 			<TooltipWrapper content="Credit consumption for full run">
 				<div className="flex items-center gap-3">
