@@ -1,27 +1,23 @@
 'use client';
-import { publishWorkflow } from '@/actions/workflows/publishWorkflow';
+import { unpublishWorkflow } from '@/actions/workflows/unpublishWorkflow';
 import DisplayIf from '@/components/DisplayIf';
 import useExecutionPlan from '@/components/hooks/useExecutionPlan';
 import { Button } from '@/components/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { useReactFlow } from '@xyflow/react';
-import { Loader2Icon, UploadIcon } from 'lucide-react';
+import { DownloadIcon, Loader2Icon, UploadIcon } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
-type PublishButtonProps = {
+type UnpublishButtonProps = {
 	workflowId: string;
 };
 
-function PublishButton({ workflowId }: PublishButtonProps) {
-	const generate = useExecutionPlan();
-
-	const { toObject } = useReactFlow();
-
+function UnpublishButton({ workflowId }: UnpublishButtonProps) {
 	const mutation = useMutation({
-		mutationFn: publishWorkflow,
+		mutationFn: unpublishWorkflow,
 		onSuccess: () => {
-			toast.success('Workflow published', { id: workflowId });
+			toast.success('Workflow unpublished', { id: workflowId });
 		},
 		onError: () => {
 			toast.error('Something went wrong', { id: workflowId });
@@ -29,25 +25,21 @@ function PublishButton({ workflowId }: PublishButtonProps) {
 	});
 
 	const handlePublish = () => {
-		const executionPlan = generate();
-		if (!executionPlan) {
-			return;
-		}
-		toast.loading('Publishing workflow...', { id: workflowId });
-		mutation.mutate({ id: workflowId, flowDefinition: JSON.stringify(toObject()) });
+		toast.loading('Unpublishing workflow...', { id: workflowId });
+		mutation.mutate(workflowId);
 	};
 
 	return (
 		<Button variant={'outline'} className="flex items-center gap-2 " onClick={handlePublish} disabled={mutation.isPending}>
 			<DisplayIf condition={!mutation.isPending}>
-				<UploadIcon size={16} className="stroke-violet-500" />
+				<DownloadIcon size={16} className="stroke-violet-500" />
 			</DisplayIf>
 			<DisplayIf condition={mutation.isPending}>
 				<Loader2Icon size={16} className="stroke-violet-500 animate-spin" />
 			</DisplayIf>
-			Publish
+			Unpublish
 		</Button>
 	);
 }
 
-export default PublishButton;
+export default UnpublishButton;

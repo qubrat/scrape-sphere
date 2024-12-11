@@ -16,9 +16,7 @@ type ExecuteButtonProps = {
 
 function ExecuteButton({ workflowId }: ExecuteButtonProps) {
 	const generate = useExecutionPlan();
-
 	const { toObject } = useReactFlow();
-
 	const router = useRouter();
 
 	const mutation = useMutation({

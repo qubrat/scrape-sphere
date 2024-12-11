@@ -6,6 +6,8 @@ import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { FileTextIcon, PlayIcon, ReplaceIcon } from 'lucide-react';
 import WorkflowActionsButton from './WorkflowActionsButton';
+import DisplayIf from '@/components/DisplayIf';
+import RunButton from '@/app/(dashboard)/workflows/_components/RunButton';
 
 const statusColors: Record<WorkflowStatusType, string> = {
 	[WorkflowStatus.DRAFT]: 'bg-amber-400 ',
@@ -48,6 +50,9 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
 					</div>
 				</div>
 				<div className="flex items-center space-x-2">
+					<DisplayIf condition={!isDraft}>
+						<RunButton workflowId={workflow.id} />
+					</DisplayIf>
 					<Link
 						className={cn(
 							buttonVariants({

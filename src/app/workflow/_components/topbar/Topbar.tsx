@@ -9,6 +9,7 @@ import ExecuteButton from '@/app/workflow/_components/topbar/ExecuteButton';
 import NavigationTabs from '@/app/workflow/_components/topbar/NavigationTabs';
 import DisplayIf from '@/components/DisplayIf';
 import PublishButton from './PublishButton';
+import UnpublishButton from './UnpublishButton';
 
 type TopbarProps = {
 	title: string;
@@ -21,7 +22,7 @@ type TopbarProps = {
 function Topbar({ title, subtitle, workflowId, hideButtons = false, isPublished = false }: TopbarProps) {
 	const router = useRouter();
 	return (
-		<header className="flex p-2 border-b-2 justify-between items-center bg-background sticky top-0 z-10">
+		<header className="flex p-2 gap-1 border-b-2 justify-between items-center bg-background sticky top-0 z-10">
 			<div className="flex gap-1 flex-1">
 				<TooltipWrapper content="Back">
 					<Button variant={'ghost'} size="icon" onClick={() => router.push('/workflows')}>
@@ -37,6 +38,9 @@ function Topbar({ title, subtitle, workflowId, hideButtons = false, isPublished 
 			<div className="flex gap-1 flex-1 justify-end">
 				<DisplayIf condition={!hideButtons}>
 					<ExecuteButton workflowId={workflowId} />
+					<DisplayIf condition={isPublished}>
+						<UnpublishButton workflowId={workflowId} />
+					</DisplayIf>
 					<DisplayIf condition={!isPublished}>
 						<SaveButton workflowId={workflowId} />
 						<PublishButton workflowId={workflowId} />
