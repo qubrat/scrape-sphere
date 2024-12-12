@@ -13,6 +13,7 @@ function TaskMenu() {
 					<AccordionTrigger className="font-bold">User interactions</AccordionTrigger>
 					<AccordionContent className="flex flex-col gap-1">
 						<TaskMenuButton taskType={Task.FILL_INPUT} />
+						<TaskMenuButton taskType={Task.CLICK_ELEMENT} />
 					</AccordionContent>
 				</AccordionItem>
 				<AccordionItem value="extractions">
