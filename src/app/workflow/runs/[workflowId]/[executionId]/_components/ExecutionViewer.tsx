@@ -10,7 +10,7 @@ import { getPhasesTotalCost } from '@/lib/helper/phases';
 import { ExecutionPhaseStatusType, WorkflowExecutionStatus } from '@/types/workflow';
 import { useQuery } from '@tanstack/react-query';
 import { formatDistanceToNow } from 'date-fns';
-import { CalendarIcon, CircleDashedIcon, ClockIcon, CoinsIcon, Loader2Icon, LucideIcon, WorkflowIcon } from 'lucide-react';
+import { CalendarIcon, CircleDashedIcon, ClockIcon, CoinsIcon, Loader2Icon, LucideIcon, SquareStackIcon } from 'lucide-react';
 import React, { ReactNode, useEffect, useState } from 'react';
 import ParameterViewer from './ParameterViewer';
 import LogViewer from './LogViewer';
@@ -89,7 +89,7 @@ function ExecutionViewer({ initialData }: ExecutionViewerProps) {
 				<Separator />
 				<div className="flex justify-center items-start py-2 px-4">
 					<div className="flex items-center gap-2 text-muted-foreground">
-						<WorkflowIcon size={20} className="stroke-muted-foreground/80" />
+						<SquareStackIcon size={20} className="stroke-muted-foreground/80" />
 						<span className="font-semibold">Phases</span>
 					</div>
 				</div>
