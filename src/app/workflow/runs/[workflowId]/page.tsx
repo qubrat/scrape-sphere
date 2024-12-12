@@ -12,7 +12,7 @@ const ExecutionsPage = async ({ params }: ExecutionsPageProps) => {
 
 	return (
 		<div className="h-full w-full overflow-auto">
-			<Topbar workflowId={workflowId} title={'All runs'} subtitle={'List of all your workflow runs'} hideButtons />
+			<Topbar workflowId={workflowId} title={'All runs'} subtitle={'List of all your workflow runs'} hideButtons path="/workflows" />
 			<Suspense
 				fallback={
 					<div className="flex h-full w-full items-center justify-center">

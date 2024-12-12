@@ -9,6 +9,7 @@ import WorkflowActionsButton from '@/app/(dashboard)/workflows/_components/Workf
 import DisplayIf from '@/components/DisplayIf';
 import RunButton from '@/app/(dashboard)/workflows/_components/RunButton';
 import ScheduleSection from '@/app/(dashboard)/workflows/_components/ScheduleSection';
+import LastRunDetails from './LastRunDetails';
 
 const statusColors: Record<WorkflowStatusType, string> = {
 	[WorkflowStatus.DRAFT]: 'bg-amber-400 ',
@@ -70,6 +71,7 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
 					<WorkflowActionsButton workflowName={workflow.name} workflowId={workflow.id} />
 				</div>
 			</CardContent>
+			<LastRunDetails workflow={workflow} />
 		</Card>
 	);
 }

@@ -11,7 +11,7 @@ const PhaseStatusBadge = ({ status }: PhaseStatusBadgeProps) => {
 		case ExecutionPhaseStatus.PENDING:
 			return <CircleDashedIcon size={20} className="stroke-muted-foreground" />;
 		case ExecutionPhaseStatus.RUNNING:
-			return <Loader2Icon size={20} className="animate-spin stroke-yellow-600" />;
+			return <Loader2Icon size={20} className="animate-spin stroke-yellow-500" />;
 		case ExecutionPhaseStatus.FAILED:
 			return <CircleXIcon size={20} className="stroke-destructive" />;
 		case ExecutionPhaseStatus.COMPLETED:
