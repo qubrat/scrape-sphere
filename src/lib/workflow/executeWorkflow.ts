@@ -178,6 +178,7 @@ async function executePhase(phase: ExecutionPhase, node: AppNode, environment: E
 	const runFunction = ExecutorRegistry[node.data.type];
 
 	if (!runFunction) {
+		logCollector.error(`No executor found for node type ${node.data.type}`);
 		return false;
 	}
 
