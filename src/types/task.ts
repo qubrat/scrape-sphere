@@ -5,7 +5,8 @@ export const Task = {
 	FILL_INPUT: 'FILL_INPUT',
 	CLICK_ELEMENT: 'CLICK_ELEMENT',
 	WAIT_FOR_ELEMENT: 'WAIT_FOR_ELEMENT',
-	DELIVER_VIA_WEBHOOK: 'DELIVER_VIA_WEBHOOK'
+	DELIVER_VIA_WEBHOOK: 'DELIVER_VIA_WEBHOOK',
+	EXTRACT_DATA_WITH_AI: 'EXTRACT_DATA_WITH_AI'
 } as const;
 
 export type TaskType = keyof typeof Task;
@@ -13,7 +14,8 @@ export type TaskType = keyof typeof Task;
 export const TaskParam = {
 	STRING: 'STRING',
 	BROWSER_INSTANCE: 'BROWSER_INSTANCE',
-	SELECT: 'SELECT'
+	SELECT: 'SELECT',
+	CREDENTIAL: 'CREDENTIAL'
 } as const;
 
 export type TaskParamType = keyof typeof TaskParam;
