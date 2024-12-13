@@ -3,14 +3,16 @@ export const Task = {
 	PAGE_TO_HTML: 'PAGE_TO_HTML',
 	EXTRACT_TEXT_FROM_ELEMENT: 'EXTRACT_TEXT_FROM_ELEMENT',
 	FILL_INPUT: 'FILL_INPUT',
-	CLICK_ELEMENT: 'CLICK_ELEMENT'
+	CLICK_ELEMENT: 'CLICK_ELEMENT',
+	WAIT_FOR_ELEMENT: 'WAIT_FOR_ELEMENT'
 } as const;
 
 export type TaskType = keyof typeof Task;
 
 export const TaskParam = {
 	STRING: 'STRING',
-	BROWSER_INSTANCE: 'BROWSER_INSTANCE'
+	BROWSER_INSTANCE: 'BROWSER_INSTANCE',
+	SELECT: 'SELECT'
 } as const;
 
 export type TaskParamType = keyof typeof TaskParam;

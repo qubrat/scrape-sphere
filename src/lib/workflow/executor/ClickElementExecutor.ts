@@ -1,5 +1,4 @@
 import { ExecutionEnvironment } from '@/types/executor';
-import * as cheerio from 'cheerio';
 import { ClickElementTask } from '../task/ClickElement';
 
 export async function ClickElementExecutor(environment: ExecutionEnvironment<typeof ClickElementTask>): Promise<boolean> {

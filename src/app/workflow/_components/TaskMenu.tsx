@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 function TaskMenu() {
 	return (
 		<aside className="w-[340px] min-w-[340px] max-w-[340px] border-r-2 border-separate h-full p-2 px-4 overflow-auto">
-			<Accordion type="multiple" className="w-full" defaultValue={['interactions', 'extractions']}>
+			<Accordion type="multiple" className="w-full" defaultValue={['interactions', 'extractions', 'timing']}>
 				<AccordionItem value="interactions">
 					<AccordionTrigger className="font-bold">User interactions</AccordionTrigger>
 					<AccordionContent className="flex flex-col gap-1">
@@ -21,6 +21,12 @@ function TaskMenu() {
 					<AccordionContent className="flex flex-col gap-1">
 						<TaskMenuButton taskType={Task.PAGE_TO_HTML} />
 						<TaskMenuButton taskType={Task.EXTRACT_TEXT_FROM_ELEMENT} />
+					</AccordionContent>
+				</AccordionItem>
+				<AccordionItem value="timing">
+					<AccordionTrigger className="font-bold">Timing controls</AccordionTrigger>
+					<AccordionContent className="flex flex-col gap-1">
+						<TaskMenuButton taskType={Task.WAIT_FOR_ELEMENT} />
 					</AccordionContent>
 				</AccordionItem>
 			</Accordion>
