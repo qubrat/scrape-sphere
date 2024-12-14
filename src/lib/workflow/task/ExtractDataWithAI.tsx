@@ -7,7 +7,7 @@ export const ExtractDataWithAITask = {
 	label: 'Extract data with AI',
 	icon: (props) => <SparklesIcon className="stroke-rose-400" {...props} />,
 	isEntryPoint: false,
-	credits: 1,
+	credits: 4,
 	inputs: [
 		{
 			name: 'Content',
