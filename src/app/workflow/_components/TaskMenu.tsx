@@ -15,6 +15,7 @@ function TaskMenu() {
 						<TaskMenuButton taskType={Task.FILL_INPUT} />
 						<TaskMenuButton taskType={Task.CLICK_ELEMENT} />
 						<TaskMenuButton taskType={Task.NAVIGATE_URL} />
+						<TaskMenuButton taskType={Task.SCROLL_TO_ELEMENT} />
 					</AccordionContent>
 				</AccordionItem>
 				<AccordionItem value="extractions">
