@@ -14,6 +14,7 @@ function TaskMenu() {
 					<AccordionContent className="flex flex-col gap-1">
 						<TaskMenuButton taskType={Task.FILL_INPUT} />
 						<TaskMenuButton taskType={Task.CLICK_ELEMENT} />
+						<TaskMenuButton taskType={Task.NAVIGATE_URL} />
 					</AccordionContent>
 				</AccordionItem>
 				<AccordionItem value="extractions">
