@@ -1,6 +1,7 @@
 import { ExecutionEnvironment } from '@/types/executor';
 import puppeteer from 'puppeteer';
 import { LaunchBrowserTask } from '../task/LaunchBrowser';
+import { SETTINGS } from '@/config/settings';
 
 export async function LaunchBrowserExecutor(environment: ExecutionEnvironment<typeof LaunchBrowserTask>): Promise<boolean> {
 	try {
@@ -11,7 +12,7 @@ export async function LaunchBrowserExecutor(environment: ExecutionEnvironment<ty
 		environment.setBrowser(browser);
 
 		const page = await browser.newPage();
-		await page.authenticate({ username: 'brd-customer-hl_38bbb324-zone-scrape_sphere', password: 'a08xnxdr4u32' });
+		await page.authenticate({ username: SETTINGS.brightData.username, password: SETTINGS.brightData.password });
 		await page.goto(websiteUrl);
 		environment.setPage(page);
 		environment.log.info(`Opened page at ${websiteUrl}`);

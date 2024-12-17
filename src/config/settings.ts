@@ -4,7 +4,7 @@ export const SETTINGS = {
 		baseURL: process.env.NEXT_PUBLIC_APP_URL
 	},
 	brightData: {
-		username: process.env.BRIGHT_DATA_USERNAME,
-		password: process.env.BRIGHT_DATA_PASSWORD
+		username: process.env.BRIGHT_DATA_USERNAME as string,
+		password: process.env.BRIGHT_DATA_PASSWORD as string
 	}
 };
