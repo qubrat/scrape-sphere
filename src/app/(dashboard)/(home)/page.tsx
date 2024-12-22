@@ -3,6 +3,7 @@ import TimePeriodSelectorWrapper from './_components/TimePeriodSelectorWrapper';
 import { TimePeriod } from '@/types/analytics';
 import { Skeleton } from '@/components/ui/skeleton';
 import StatsCards from './_components/StatsCards';
+import StatsCardSkeleton from './_components/StatsCardSkeleton';
 
 type HomePageProps = {
 	searchParams: Promise<{ month?: string; year?: string }>;
@@ -24,7 +25,11 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
 					<TimePeriodSelectorWrapper selectedTimePeriod={timePeriod} />
 				</Suspense>
 			</div>
-			<StatsCards selectedTimePeriod={timePeriod} />
+			<div className="h-full py-6 flex flex-col gap-4">
+				<Suspense fallback={<StatsCardSkeleton />}>
+					<StatsCards selectedTimePeriod={timePeriod} />
+				</Suspense>
+			</div>
 		</div>
 	);
 };
