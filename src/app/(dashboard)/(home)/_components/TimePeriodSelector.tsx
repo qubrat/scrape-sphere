@@ -2,7 +2,7 @@
 import { MONTH_NAMES, TimePeriod } from '@/types/analytics';
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 type TimePeriodSelectorProps = {
 	timePeriods: TimePeriod[];
@@ -11,6 +11,7 @@ type TimePeriodSelectorProps = {
 
 function TimePeriodSelector({ timePeriods, selectedTimePeriod }: TimePeriodSelectorProps) {
 	const searchParams = useSearchParams();
+	const router = useRouter();
 	return (
 		<Select
 			onValueChange={(value) => {
@@ -18,9 +19,9 @@ function TimePeriodSelector({ timePeriods, selectedTimePeriod }: TimePeriodSelec
 				const params = new URLSearchParams(searchParams);
 				params.set('month', month);
 				params.set('year', year);
-				history.pushState(null, '', `?${params.toString()}`);
+				router.push(`?${params.toString()}`);
 			}}
-			defaultValue={`${selectedTimePeriod.month}-${selectedTimePeriod.year}`}
+			value={`${selectedTimePeriod.month}-${selectedTimePeriod.year}`}
 		>
 			<SelectTrigger className="w-[180px]">
 				<SelectValue placeholder="Select a time period" />

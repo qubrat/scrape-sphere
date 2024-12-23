@@ -4,6 +4,7 @@ import { TimePeriod } from '@/types/analytics';
 import { Skeleton } from '@/components/ui/skeleton';
 import StatsCards from './_components/StatsCards';
 import StatsCardSkeleton from './_components/StatsCardSkeleton';
+import { CreditsUsageInTimePeriod, StatsExecutionStatus } from './_components/ChartCard';
 
 type HomePageProps = {
 	searchParams: Promise<{ month?: string; year?: string }>;
@@ -28,6 +29,12 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
 			<div className="h-full py-6 flex flex-col gap-4">
 				<Suspense fallback={<StatsCardSkeleton />}>
 					<StatsCards selectedTimePeriod={timePeriod} />
+				</Suspense>
+				<Suspense fallback={<Skeleton className="h-80 w-full" />}>
+					<StatsExecutionStatus selectedTimePeriod={timePeriod} />
+				</Suspense>
+				<Suspense fallback={<Skeleton className="h-80 w-full" />}>
+					<CreditsUsageInTimePeriod selectedTimePeriod={timePeriod} />
 				</Suspense>
 			</div>
 		</div>
