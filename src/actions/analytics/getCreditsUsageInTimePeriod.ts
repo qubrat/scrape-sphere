@@ -7,6 +7,8 @@ import { eachDayOfInterval, format } from 'date-fns';
 
 type Stats = Record<string, { success: number; failed: number }>;
 
+const { COMPLETED, FAILED } = ExecutionPhaseStatus;
+
 export async function getCreditsUsageInTimePeriod(timePeriod: TimePeriod) {
 	const { userId } = await auth();
 	if (!userId) {
@@ -20,6 +22,9 @@ export async function getCreditsUsageInTimePeriod(timePeriod: TimePeriod) {
 			startedAt: {
 				gte: dateRange.startDate,
 				lte: dateRange.endDate
+			},
+			status: {
+				in: [COMPLETED, FAILED]
 			}
 		}
 	});
@@ -41,9 +46,9 @@ export async function getCreditsUsageInTimePeriod(timePeriod: TimePeriod) {
 
 	executionPhases.forEach((phase) => {
 		const date = format(phase.startedAt!, dateFormat);
-		if (phase.status === ExecutionPhaseStatus.COMPLETED) {
+		if (phase.status === COMPLETED) {
 			stats[date].success += phase.creditsConsumed || 0;
-		} else if (phase.status === ExecutionPhaseStatus.FAILED) {
+		} else if (phase.status === FAILED) {
 			stats[date].failed += phase.creditsConsumed || 0;
 		}
 	});
