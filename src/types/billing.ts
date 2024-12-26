@@ -1,3 +1,5 @@
+import { SETTINGS } from '@/config/settings';
+
 export const CreditsPackId = {
 	SMALL: 'SMALL',
 	MEDIUM: 'MEDIUM',
@@ -12,6 +14,7 @@ export type CreditsPack = {
 	label: string;
 	price: number;
 	credits: number;
+	priceId: string;
 };
 
 export const CreditsPacks: CreditsPack[] = [
@@ -20,21 +23,24 @@ export const CreditsPacks: CreditsPack[] = [
 		name: 'Small Pack',
 		label: '1 000 credits',
 		price: 699,
-		credits: 1000
+		credits: 1000,
+		priceId: SETTINGS.stripe.packs.small
 	},
 	{
 		id: CreditsPackId.MEDIUM,
 		name: 'Medium Pack',
 		label: '5 000 credits',
 		price: 2499,
-		credits: 5000
+		credits: 5000,
+		priceId: SETTINGS.stripe.packs.medium
 	},
 	{
 		id: CreditsPackId.LARGE,
 		name: 'Large Pack',
 		label: '10 000 credits',
 		price: 3999,
-		credits: 10000
+		credits: 10000,
+		priceId: SETTINGS.stripe.packs.large
 	}
 ];
 
