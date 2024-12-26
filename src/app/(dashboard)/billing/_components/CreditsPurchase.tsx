@@ -1,13 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { CoinsIcon, CreditCardIcon } from 'lucide-react';
+import { CoinsIcon, CreditCardIcon, Loader2Icon } from 'lucide-react';
 import { CreditsPackId, CreditsPackIdType, CreditsPacks } from '@/types/billing';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { purchaseCredits } from '@/actions/billing/purchaseCredits';
+import DisplayIf from '@/components/DisplayIf';
 
 const CreditsPurchase = () => {
 	const [selectedPack, setSelectedPack] = useState<CreditsPackIdType>(CreditsPackId.MEDIUM);
@@ -50,7 +51,13 @@ const CreditsPurchase = () => {
 				</CardContent>
 				<CardFooter>
 					<Button className="w-full" disabled={mutation.isPending} onClick={() => mutation.mutate(selectedPack)}>
-						<CreditCardIcon className="mr-2 h-5 w-5" /> Proceed to payment
+						<DisplayIf condition={!mutation.isPending}>
+							<CreditCardIcon className="mr-2 h-5 w-5" />
+						</DisplayIf>
+						<DisplayIf condition={mutation.isPending}>
+							<Loader2Icon className="mr-2 h-5 w-5 animate-spin" />
+						</DisplayIf>
+						<span>Proceed to payment</span>
 					</Button>
 				</CardFooter>
 			</CardHeader>
