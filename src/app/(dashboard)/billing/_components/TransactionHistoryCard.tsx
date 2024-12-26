@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeftRightIcon } from 'lucide-react';
 import DisplayIf from '@/components/DisplayIf';
+import InvoiceButton from './InvoiceButton';
 
 const TransactionHistoryCard = async () => {
 	const purchases = await getUserPurchaseHistory();
@@ -26,8 +27,9 @@ const TransactionHistoryCard = async () => {
 								<p className="font-medium">{formatDate(purchase.date)}</p>
 								<p className="text-sm text-muted-foreground">{purchase.description}</p>
 							</div>
-							<div className="text-right">
+							<div className="text-right flex items-center justify-center gap-1">
 								<p className="font-medium">{formatAmount(purchase.amount, purchase.currency)}</p>
+								<InvoiceButton id={purchase.id} />
 							</div>
 						</div>
 					))}
