@@ -6,7 +6,7 @@ import React from 'react';
 const bgGradient = 'bg-gradient-to-r from-green-500 to-primary';
 
 type LogoProps = {
-	fontSize?: 'text-xl' | 'text-2xl';
+	fontSize?: 'text-xl' | 'text-2xl' | 'text-3xl';
 	iconSize?: number;
 };
 
