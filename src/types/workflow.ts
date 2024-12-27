@@ -33,7 +33,8 @@ export const WorkflowExecutionStatus = {
 export type WorkflowExecutionStatusType = keyof typeof WorkflowExecutionStatus;
 
 export const WorkflowExecutionTrigger = {
-	MANUAL: 'MANUAL'
+	MANUAL: 'MANUAL',
+	CRON: 'CRON'
 } as const;
 export type WorkflowExecutionTriggerType = keyof typeof WorkflowExecutionTrigger;
 

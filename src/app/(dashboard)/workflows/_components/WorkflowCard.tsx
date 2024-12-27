@@ -5,7 +5,13 @@ import { WorkflowStatus, WorkflowStatusType } from '@/types/workflow';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { FileTextIcon, PlayIcon, ReplaceIcon } from 'lucide-react';
-import WorkflowActionsButton from './WorkflowActionsButton';
+import WorkflowActionsButton from '@/app/(dashboard)/workflows/_components/WorkflowActionsButton';
+import DisplayIf from '@/components/DisplayIf';
+import RunButton from '@/app/(dashboard)/workflows/_components/RunButton';
+import ScheduleSection from '@/app/(dashboard)/workflows/_components/ScheduleSection';
+import LastRunDetails from './LastRunDetails';
+import DuplicateWorkflowDialog from './DuplicateWorkflowDialog';
+import TooltipWrapper from '@/components/TooltipWrapper';
 
 const statusColors: Record<WorkflowStatusType, string> = {
 	[WorkflowStatus.DRAFT]: 'bg-amber-400 ',
@@ -32,7 +38,7 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
 	const isDraft = workflow.status === WorkflowStatus.DRAFT;
 
 	return (
-		<Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30">
+		<Card className="border border-separate shadow-sm rounded-lg overflow-hidden transition-shadow  hover:shadow-md dark:shadow-primary/30 group/card">
 			<CardContent className="p-4 flex items-center justify-between h-[100px]">
 				<div className="flex items-center justify-end space-x-3">
 					<div className={cn('w-10 h-10 rounded-full flex items-center justify-center text-white', statusColors[workflow.status])}>
@@ -40,14 +46,21 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
 					</div>
 					<div>
 						<h3 className="text-base font-bold text-muted-foreground flex items-center">
-							<Link className="flex items-center hover:underline" href={`/workflow/editor/${workflow.id}`}>
-								{workflow.name}
-							</Link>
+							<TooltipWrapper content={workflow.description}>
+								<Link className="flex items-center hover:underline" href={`/workflow/editor/${workflow.id}`}>
+									{workflow.name}
+								</Link>
+							</TooltipWrapper>
 							<DraftBadge isDraft={isDraft} />
+							<DuplicateWorkflowDialog workflowId={workflow.id} />
 						</h3>
+						<ScheduleSection isDraft={isDraft} creditsCost={workflow.creditsCost} workflowId={workflow.id} cron={workflow.cron} />
 					</div>
 				</div>
 				<div className="flex items-center space-x-2">
+					<DisplayIf condition={!isDraft}>
+						<RunButton workflowId={workflow.id} />
+					</DisplayIf>
 					<Link
 						className={cn(
 							buttonVariants({
@@ -63,6 +76,7 @@ function WorkflowCard({ workflow }: WorkflowCardProps) {
 					<WorkflowActionsButton workflowName={workflow.name} workflowId={workflow.id} />
 				</div>
 			</CardContent>
+			<LastRunDetails workflow={workflow} />
 		</Card>
 	);
 }
